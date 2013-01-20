@@ -1,0 +1,29 @@
+extends layout
+
+block content
+
+  #divProjects
+    form#projectForm(action='/admin/create', method='post')
+      |projects
+      br
+      span.smallFont add Project
+      br
+      input(type='text', name='name')
+      br
+    - var currentProject
+    p.cat topmenu
+    ul#sortable.projectList
+      
+
+      each project in projects
+  
+        if project.category == true
+          li(data-project-id = project.id).ui-state-default.topmenu
+            a(href='/admin/edit/' + project._id)= project.name
+            a.delete(href='/admin/delete/' + project._id)
+              img.delImg 
+        else
+          li(data-project-id = project.id).ui-state-default.works
+            a(href='/admin/edit/' + project._id)= project.name
+            a.delete(href='/admin/delete/' + project._id)
+              img.delImg

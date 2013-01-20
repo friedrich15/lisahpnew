@@ -1,0 +1,82 @@
+extends layout
+
+block content
+  #main
+    #menu
+      #menu_container
+        p#menu_head1.menu_head Lisa Truttmann
+        ul.menu
+          each project in projects
+            if project.category == true && project.visible == true 
+                li
+                  a(href='/project/'+project._id, name='name')= project.name
+        ul.menu
+          li works
+          each project in projects
+            if project.category !== true && project.visible == true
+              li
+                a(href='/project/'+project._id, name='name')= project.name
+    #content
+      #content_container
+        #left_content.description
+          h3(name='name')= currentProject.name
+          span.italText!= currentProject.description
+        #right_content.description
+          h3.trans= currentProject.name
+          span.italText.trans!= currentProject.translation
+      #mediaContainer
+        - var iCount = 0
+        - var pMedia = currentProject.media
+        - var vCount = 0
+        - var pVideo = currentProject.video
+        #mediaSelector
+          each j in pMedia    
+            - iCount ++
+          if iCount != 0  
+            a#photo.mediaSelect.activeMenu photo
+          each v in pVideo
+            - vCount ++
+          if vCount != 0    
+            a#video.mediaSelect video
+            
+        #img_container
+          - iCount = 0
+          - vCount = 0 
+         
+          each i in pMedia
+            - iCount ++
+          if iCount > 1  
+            p#nav
+              a(onclick='prevImg()')#pref.imgNav Pref
+              span#imgNav |
+              a(onclick='nextImg()')#next.imgNav Next
+              span.num 1
+              span /
+              span.count= iCount
+          #img
+            - iCount = 0
+            each j in pMedia
+              - iCount ++
+                div(id = 'img' + iCount).hidden  
+                  img(src='../../uploads/' + j.name) 
+                  p.desc= j.description
+        #video_container
+          each v in pVideo
+            - vCount ++
+          if vCount > 1  
+            p#vNav
+              a(onclick='prevVid()')#prefVid.imgNav Pref
+              span#vidNav |
+              a(onclick='nextVid()')#nextVid.imgNav Next
+              span.vNum 1
+              span /
+              span.vCount= vCount
+          #video
+            - vCount = 0  
+            each w in pVideo
+              - vCount ++
+                div(id='vid' + vCount, class='hidden').videoDiv
+                  p.vName= w.name
+                  div!= w.url
+                    p.vDescription= w.description
+

@@ -1,0 +1,25 @@
+div#content p {
+  margin: 10px 0;
+}
+
+div#content h1 {
+  margin: 10px 0;
+  font-size: 12px;
+  font-weight: normal;
+}
+div#content a {
+  font-style: normal;
+}
+
+div.sub h1 {
+  cursor: pointer;
+  text-decoration: underline;
+  font-style: normal;
+  color: #7F7F7F;
+  line-height: 14px;
+}
+
+div.sub span {
+  font-style: normal;
+  display: none;
+}

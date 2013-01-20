@@ -1,0 +1,11 @@
+LISA ADMIN HP TODO LIST
+
+- MEDIA UPLOAD!!
+- saving: should be recognizable!
+- have lists stay in order
+	- make list sortable
+
+- possibility to make VERSIONS
+	- display versions
+
+- open external links in new tab / internal not!
