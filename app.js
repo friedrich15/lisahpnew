@@ -7,7 +7,8 @@ var express = require('express')
   , user = require('./routes/user')
   , http = require('http')
   , path = require('path')
-  , fs = require('fs');
+  , fs = require('fs')
+  , flash = require('connect-flash');
 
 var app = express();
 
@@ -24,6 +25,7 @@ app.configure(function(){
   app.use(express.methodOverride());
   app.use(express.cookieParser('your secret here'));
   app.use(express.session());
+  app.use(flash());
   app.use(app.router);
   app.use(express.static(path.join(__dirname, 'public')));
   app.use('public/javascripts', express.static(path.join(__dirname, 'public/javascripts')));
@@ -36,11 +38,35 @@ app.configure('development', function(){
   app.use(express.errorHandler());
 });
 
+function checkAuth(req, res, next) {
+  if (!req.session.user_id) {
+    res.redirect("/login");
+    console.log("wrong");
+  } else {
+    next();
+  }
+}
+
+app.all("/admin", checkAuth);
+app.all("/admin/*", checkAuth);
 app.get('/', routes.index);
 app.get('/project/:id', routes.project);
 app.get('/users', user.list);
-app.post('/admin/login', routes.admin.login);
-app.get('/admin/authenticate', routes.admin.authenticate);
+app.get('/login', routes.login);
+app.post('/login/authenticate', function (req, res) {
+  var post = req.body;
+  if (post.user == 'admin' && post.password == 'lisaweb2013') {
+    req.session.user_id = "admin";
+    res.redirect('/admin');
+  } else {
+    res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
+    req.flash('info', 'Wrong login/password');
+    req.flash('class', 'wrong');
+    
+    res.redirect('/login');
+  }
+});
+//app.get('/admin/authenticate', routes.admin.authenticate);
 app.get('/admin', routes.admin.index);
 app.post( '/admin/create', routes.admin.create );
 app.get( '/admin/delete/:id', routes.admin.delete );
@@ -53,6 +79,10 @@ app.post( '/admin/video/:id', routes.admin.video);
 app.post( '/admin/projectsort/:id', routes.admin.projectsort);
 app.post( '/admin/imgedit/:id', routes.admin.imgedit);
 app.post( '/admin/videdit/:id', routes.admin.videdit);
+app.get('/logout', function (req, res) {
+  delete req.session.user_id;
+  res.redirect('/login');
+});
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));

@@ -2,6 +2,13 @@ var mongoose = require( 'mongoose' );
 var Project  = mongoose.model( 'Project' );
 var Media = mongoose.model( 'Media' );
 
+exports.login = function (req, res){
+  res.render( 'login', {
+    title : 'Login',
+    fail : {message: req.flash('info'), class: req.flash('class')}
+  } );
+}
+
 exports.index = function(req, res){
   Project.find().sort("position").exec( function ( err, projects, count ){
     res.render( 'index', {

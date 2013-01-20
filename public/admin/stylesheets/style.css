@@ -59,3 +59,21 @@ a.delete img {
 li.topmenu a {
   color: #55a;
 }
+
+#logout {
+  position: absolute;
+  bottom: 20px;
+}
+#logout a {
+  color: #ddd;
+  background: #aaa;
+  border: 1px solid #aaa;
+  border-radius: 2px;
+  padding: 2px 3px;
+}
+#logout a:hover {
+  background: #ccf;
+  color: #500;
+  border: 1px solid #666;
+  box-shadow: 0 0 10px #888;
+}

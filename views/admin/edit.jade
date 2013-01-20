@@ -29,7 +29,8 @@ block content
             a(href='/admin/edit/' + project._id)= project.name
             a.delete(href='/admin/delete/' + project._id)
               img.delImg
-
+  #logout
+    a(href='/logout') Logout            
   #mainContainer
     form#projectContent(action='/admin/update/' + currentProjectId, method='post')  
       #projectContainer

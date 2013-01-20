@@ -32,8 +32,8 @@ $(document).ready(function(){
     $("#video_container").fadeIn();
     $("a#video").addClass("activeMenu");
   }
-  loadImg('1');
-  loadVid('1');
+  loadImg(1);
+  loadVid(1);
 });
 
 

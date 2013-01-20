@@ -6,6 +6,8 @@ var marked = require('marked');
 var path = require('path');
 var fs = require('fs');
 
+
+
 exports.index = function(req, res){
   Project.find().sort("position").exec( function ( err, projects, count ){
     res.render( 'admin/index', {

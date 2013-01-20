@@ -159,15 +159,16 @@ div#img {
 div#img div img {
 }
 div#img p.desc {
-  color: #777;
+  color: #222;
   position: absolute;
   width: 500px;
+  top: 45px;
 }
 p.vName {
   width: 600px;
 }
 p.vDescription{
-  color: #777;
+  color: #222;
 }
 div#video div {
 
