@@ -14,6 +14,7 @@ var app = express();
 
 require('./models/project');
 
+app.enable('trust proxy')
 
 app.configure(function(){
   app.set('port', process.env.PORT || 3123);
@@ -59,7 +60,6 @@ app.post('/login/authenticate', function (req, res) {
     req.session.user_id = "admin";
     res.redirect('/admin');
   } else {
-    res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
     req.flash('info', 'Wrong login/password');
     req.flash('class', 'wrong');
     

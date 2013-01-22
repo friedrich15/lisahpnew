@@ -80,7 +80,7 @@ function checkWhichArea(area){
     alert("No textarea selected.");
   }
   else {
-    insertAtCaret(thisArea, "\n<div class='sub' markdown='1'>\n<h1>TITLE</h1> \n<span>CONTENT here ...</span>\n</div>\n");
+    insertAtCaret(thisArea, "\n<div class='sub' markdown='1' data-alttitle='ALT-TITLE'>\n<h1>TITLE</h1> \n<span>CONTENT here ...</span>\n</div>\n");
     return false;
   }
 }

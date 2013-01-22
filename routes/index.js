@@ -11,10 +11,20 @@ exports.login = function (req, res){
 
 exports.index = function(req, res){
   Project.find().sort("position").exec( function ( err, projects, count ){
-    res.render( 'index', {
-        title : 'Lisa Truttmann',
-        projects : projects
-    });
+    var currentProject = projects.filter(function(projects) { return projects.name == "now" && projects.category == true; })[0];
+    if (currentProject !== undefined && currentProject.visible == true) {  
+      res.render( 'project', {
+          title : 'now : Lisa Truttmann',
+          projects : projects,
+          currentProject : currentProject
+      });
+    }
+    else {
+      res.render( 'index', {
+          title : 'Lisa Truttmann',
+          projects : projects
+      });
+    };
   });
 };
 

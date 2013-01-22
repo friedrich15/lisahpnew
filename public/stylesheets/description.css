@@ -5,7 +5,8 @@ div#content p {
 div#content h1 {
   margin: 10px 0;
   font-size: 12px;
-  font-weight: normal;
+  font-style: normal;
+
 }
 div#content a {
   font-style: normal;

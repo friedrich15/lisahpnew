@@ -2,6 +2,10 @@ $(document).ready(function(){
   $(".sub > h1").click(function(){
     $(this).toggleClass("visible");
     $(this).siblings().toggle();
+    var altTitle = $(this).parent().data("alttitle");
+    var title = $(this).text();
+    $(this).parent().data("alttitle", title);
+    $(this).text(altTitle);
   });  
   $(".sub > h1").hover(function(){
     if ($(this).hasClass("visible")==false){
