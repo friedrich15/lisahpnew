@@ -1,4 +1,3 @@
-
 /**
  * Module dependencies.
  */
@@ -24,7 +23,7 @@ app.configure(function(){
   app.use(express.logger('dev'));
   app.use(express.bodyParser({keepExtensions: true, uploadDir: __dirname + '/public/uploads'}));
   app.use(express.methodOverride());
-  app.use(express.cookieParser('your secret here'));
+  app.use(express.cookieParser('u4x623B1.T##{Mv'));
   app.use(express.session());
   app.use(flash());
   app.use(app.router);
